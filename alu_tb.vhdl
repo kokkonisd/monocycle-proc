@@ -28,6 +28,7 @@ begin
         assert A = X"00000005" report "A is wrong during ADD (OP = 00)" severity error;
         assert B = X"00000007" report "B is wrong during ADD (OP = 00)" severity error;
         assert S = X"0000000C" report "S is wrong during ADD (OP = 00)" severity error;
+        assert N = '0' report "N is wrong during ADD (OP = 00)" severity error;
         wait for 2 ns;
 
         OP1 <= "01"; -- PASS B
@@ -36,6 +37,7 @@ begin
         assert A = X"00000005" report "A is wrong during PASS B (OP = 01)" severity error;
         assert B = X"00000007" report "B is wrong during PASS B (OP = 01)" severity error;
         assert S = X"00000007" report "S is wrong during PASS B (OP = 01)" severity error;
+        assert N = '0' report "N is wrong during PASS B (OP = 01)" severity error;
         wait for 2 ns;
 
         OP1 <= "10"; -- SUB
@@ -44,6 +46,7 @@ begin
         assert A = X"00000005" report "A is wrong during SUB (OP = 10)" severity error;
         assert B = X"00000007" report "B is wrong during SUB (OP = 10)" severity error;
         assert S = X"FFFFFFFE" report "S is wrong during SUB (OP = 10)" severity error;
+        assert N = '1' report "N is wrong during SUB (OP = 10)" severity error;
         wait for 2 ns;
 
         OP1 <= "11"; -- PASS A
@@ -52,6 +55,7 @@ begin
         assert A = X"00000005" report "A is wrong during PASS A (OP = 11)" severity error;
         assert B = X"00000007" report "B is wrong during PASS A (OP = 11)" severity error;
         assert S = X"00000005" report "S is wrong during PASS A (OP = 11)" severity error;
+        assert N = '0' report "N is wrong during PASS A (OP = 11)" severity error;
         wait for 2 ns;
 
     end process;
