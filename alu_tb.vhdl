@@ -1,5 +1,5 @@
-Library IEEE;
-use IEEE.std_logic_1164.all;
+Library ieee;
+use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
@@ -18,7 +18,6 @@ begin
 
     test : process
     begin
-
         -- Set A = 5 and B = 7
         A <= X"00000005";
         B <= X"00000007";
@@ -74,7 +73,6 @@ begin
         assert S = X"00000005" report "S is wrong during PASS A (OP = 11)" severity error;
         -- Check N flag (should be 0 because S is not negative)
         assert N = '0' report "N is wrong during PASS A (OP = 11)" severity error;
-
     end process;
 
 end architecture;
