@@ -8,6 +8,7 @@ use ieee.numeric_std.all;
 -- This test bench aims to test the operations of the ALU IP
 --
 -- Written by D. Kokkonis (@kokkonisd)
+
 entity alu_tb is
 end entity;
 

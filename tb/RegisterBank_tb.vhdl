@@ -8,6 +8,7 @@ use ieee.std_logic_1164.all;
 -- capabilities of the RegisterBank IP
 --
 -- Written by D. Kokkonis (@kokkonisd)
+
 entity RegisterBank_tb is
 end entity;
 

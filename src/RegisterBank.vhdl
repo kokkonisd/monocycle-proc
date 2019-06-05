@@ -9,7 +9,7 @@ use ieee.numeric_std.all;
 -- CLK is the clock line
 -- RST is the reset line
 -- W is a 32-bit data bus that holds the data to write into register bank
--- RA, RB and RW are 32-bit data buses that hold the addresses of A and B
+-- RA, RB and RW are 3-bit data buses that hold the addresses of A and B
 -- and the address on which the data should be written, respectively
 -- WE is a write-enable input
 -- A and B are 32-bit data buses that output the content of the registers @RA & @RB
@@ -32,6 +32,7 @@ entity RegisterBank is
     );
 end entity;
 
+
 architecture default of RegisterBank is
     -- Declaration of type register_array (array of 16 32-bit vectors)
     type register_array is array (15 downto 0) of std_logic_vector (31 downto 0);
@@ -41,9 +42,12 @@ architecture default of RegisterBank is
         variable result : register_array;
 
     begin
-        for i in 15 downto 0 loop
+        for i in 14 downto 0 loop
             result(i) := (others=>'0');
         end loop;
+
+        -- Put the value 48 (0x30) in the last register, will come handy for testing later
+        result(15) := X"00000030";
 
         return result;
     end function;

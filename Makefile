@@ -10,14 +10,14 @@ all: $(SOURCES)
 wave: $(SOURCES)
 	$(WAVE) $(SIMS)
 
+ProcessingUnit: ALU RegisterBank
+
 %: src/%.vhdl tb/%_tb.vhdl
 	@echo "\033[0;33m"
 	@echo "[Compiling \`$@.vhdl\` & \`$@_tb.vhdl\` ...]"
 	@echo "\033[0m"
-	$(VC) -s src/$@.vhdl
-	$(VC) -a src/$@.vhdl
-	$(VC) -s tb/$@_tb.vhdl
-	$(VC) -a tb/$@_tb.vhdl
+	$(VC) -s src/$@.vhdl tb/$@_tb.vhdl
+	$(VC) -a src/$@.vhdl tb/$@_tb.vhdl
 	$(VC) -e $@_tb
 	$(VC) -r $@_tb --vcd=simu/$@.vcd --assert-level=$(ASSERTLVL) --stop-time=$(SIMTIME)
 	@echo ""
