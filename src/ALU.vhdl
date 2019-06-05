@@ -4,11 +4,21 @@ use ieee.numeric_std.all;
 
 
 -- Arithmetic Logic Unit for the monocycle MIPS processor
+--
 -- This unit has 3 inputs and 2 outputs:
 -- OP is an operation code in 2 bits
 -- A and B are 32-bit data inputs
 -- S is a 32-bit data output
 -- N is a 1-bit output flag
+--
+-- It performs 4 operations, based on the value of OP:
+-- 1. A + B
+-- 2. Let B pass through
+-- 3. A - B
+-- 4. Let A pass through
+--
+-- Written by D. Kokkonis (@kokkonisd)
+
 entity ALU is
     port (
         OP : in std_logic_vector (1 downto 0);
