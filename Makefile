@@ -2,22 +2,22 @@ VC = ghdl
 WAVE = gtkwave
 SIMTIME ?= 100ns
 ASSERTLVL ?= warning
-SOURCES = $(patsubst %.vhdl, %, $(wildcard *[!_tb].vhdl)) $(patsubst %.vhd, %, $(wildcard *[!_tb].vhd))
-TBS = $(patsubst %.vhdl, %, $(wildcard *_tb.vhdl)) $(patsubst %.vhd, %, $(wildcard *_tb.vhd))
-SIMS = $(patsubst %, %.vcd, $(SOURCES))
+SOURCES = $(patsubst src/%.vhdl, %, $(wildcard src/*[!_tb].vhdl)) $(patsubst %.vhd, %, $(wildcard src/*[!_tb].vhd))
+TBS = $(patsubst %.vhdl, %, $(wildcard src/*_tb.vhdl)) $(patsubst %.vhd, %, $(wildcard src/*_tb.vhd))
+SIMS = $(wildcard simu/*.vcd)
 
 all: $(SOURCES)
 
 wave: $(SOURCES)
 	$(WAVE) $(SIMS)
 
-%: %.vhdl %_tb.vhdl
-	$(VC) -s $@.vhdl
-	$(VC) -a $@.vhdl
-	$(VC) -s $@_tb.vhdl
-	$(VC) -a $@_tb.vhdl
+%: src/%.vhdl src/%_tb.vhdl
+	$(VC) -s src/$@.vhdl
+	$(VC) -a src/$@.vhdl
+	$(VC) -s src/$@_tb.vhdl
+	$(VC) -a src/$@_tb.vhdl
 	$(VC) -e $@_tb
-	$(VC) -r $@_tb --vcd=$@.vcd --assert-level=$(ASSERTLVL) --stop-time=$(SIMTIME)
+	$(VC) -r $@_tb --vcd=simu/$@.vcd --assert-level=$(ASSERTLVL) --stop-time=$(SIMTIME)
 
 clean:
-	rm -rf *.o *.cf *.vcd
+	rm -rf *.cf simu/*.vcd
