@@ -2,6 +2,12 @@ Library ieee;
 use ieee.std_logic_1164.all;
 
 
+-- Register bank test bench for the RegisterBank IP
+--
+-- This test bench aims to test the reading and writing
+-- capabilities of the RegisterBank IP
+--
+-- Written by D. Kokkonis (@kokkonisd)
 entity RegisterBank_tb is
 end entity;
 

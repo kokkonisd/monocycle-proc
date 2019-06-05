@@ -3,6 +3,11 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 
+-- ALU test bench for the ALU IP
+--
+-- This test bench aims to test the operations of the ALU IP
+--
+-- Written by D. Kokkonis (@kokkonisd)
 entity alu_tb is
 end entity;
 
