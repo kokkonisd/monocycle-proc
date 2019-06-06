@@ -37,5 +37,5 @@ begin
         -- Check output
         assert S = X"FFFFFFF4" report "S is wrong for negative input" severity error;
     end process;
-    
+
 end architecture;

@@ -7,19 +7,17 @@ SIMS = $(wildcard simu/*.vcd)
 
 all: $(SOURCES)
 
-wave: $(SOURCES)
-	$(WAVE) $(SIMS)
-
 ProcessingUnit: ALU RegisterBank
 
 %: src/%.vhdl tb/%_tb.vhdl
-	@echo "\033[0;33m"
-	@echo "[Compiling \`$@.vhdl\` & \`$@_tb.vhdl\` ...]"
-	@echo "\033[0m"
+	@echo ""
+	@echo "\033[0;33m[Compiling \`$@.vhdl\` & \`$@_tb.vhdl\` ...]\033[0m"
 	$(VC) -s src/$@.vhdl tb/$@_tb.vhdl
 	$(VC) -a src/$@.vhdl tb/$@_tb.vhdl
 	$(VC) -e $@_tb
-	$(VC) -r $@_tb --vcd=simu/$@.vcd --assert-level=$(ASSERTLVL) --stop-time=$(SIMTIME)
+	@echo "\033[0;33m[Running \`$@_tb.vhdl\` ...]\033[0m"
+	$(VC) -r $@_tb --vcd=simu/$@.vcd --assert-level=$(ASSERTLVL) --stop-time=$(SIMTIME) || (echo "\033[0;31m[\`$@\` FAIL]\033[0m"; exit 1)
+	@echo "\033[0;32m[\`$@\` PASS]\033[0m"
 	@echo ""
 
 clean:
