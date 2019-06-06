@@ -5,11 +5,11 @@ use ieee.numeric_std.all;
 
 -- Generic MUX for the monocycle MIPS processor
 --
--- This unit has 3 inputs and 2 outputs:
--- OP is an operation code in 2 bits
--- A and B are 32-bit data inputs
--- S is a 32-bit data output
--- N is a 1-bit output flag
+-- This unit has 3 inputs and 1 output:
+-- A and B are (N-1)-bit data inputs
+-- COM is a 1-bit flag input
+-- S is an (N-1)-bit data output
+-- Also, N is a generic integer input
 --
 -- It is a standard 2v1 multiplexer, which also
 -- has a generic parameter N (corresponding to the input/output size)
