@@ -3,7 +3,6 @@ WAVE = gtkwave
 SIMTIME ?= 100ns
 ASSERTLVL ?= warning
 SOURCES = $(patsubst src/%.vhdl, %, $(wildcard src/*.vhdl)) $(patsubst %.vhd, %, $(wildcard src/*.vhd))
-SIMS = $(wildcard simu/*.vcd)
 
 all: $(SOURCES)
 
