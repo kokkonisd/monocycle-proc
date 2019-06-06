@@ -9,11 +9,11 @@ use ieee.numeric_std.all;
 --
 -- Written by D. Kokkonis (@kokkonisd)
 
-entity alu_tb is
+entity ALU_tb is
 end entity;
 
 
-architecture default of alu_tb is
+architecture default of ALU_tb is
     signal OP : std_logic_vector (1 downto 0);
     signal A, B, S : std_logic_vector (31 downto 0);
     signal N : std_logic;
