@@ -20,4 +20,4 @@ ProcessingUnit: ALU RegisterBank
 	@echo ""
 
 clean:
-	rm -rf *.cf simu/*.vcd *_tb
+	rm -rf *.cf simu/*.vcd *_tb *.o
