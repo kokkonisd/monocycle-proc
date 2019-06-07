@@ -1,3 +1,4 @@
 *.o
 *.cf
 simu/*.vcd
+*_tb
