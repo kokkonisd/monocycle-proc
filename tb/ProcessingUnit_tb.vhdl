@@ -13,14 +13,15 @@ end entity;
 
 
 architecture default of ProcessingUnit_tb is
-    signal CLK, RST, WE : std_logic;
-    signal RA, RB, RW : std_logic_vector (3 downto 0);
+    signal CLK, RST, COM1, COM2, WER, WED : std_logic;
     signal OP : std_logic_vector (1 downto 0);
+    signal RW, RA, RB : std_logic_vector (3 downto 0);
+    signal Imm : std_logic_vector (7 downto 0);
     signal N : std_logic;
 
 begin
 
-    T0 : entity work.ProcessingUnit(default) port map (CLK, RST, WE, RA, RB, RW, OP, N);
+    T0 : entity work.ProcessingUnit(default) port map (CLK, RST, COM1, COM2, WER, WED, OP, RW, RA, RB, Imm, N);
 
     clk_gen : process
     begin
@@ -33,7 +34,6 @@ begin
 
     test : process
     begin
-        assert RST = '1' report "Note: you should check the chronogram of this test to verify it" severity note;
         -- Initialize unit with a reset
         RST <= '1';
         wait for 4 ns;
@@ -41,74 +41,128 @@ begin
 
         -- Perform a bunch of operations
 
-        -- R(1) = R(15)
+        -- Add two registers together
         RA <= X"F";
-        OP <= "11";
-        RW <= X"1";
-        WE <= '1';
-        -- Wait till value is written
-        wait for 6 ns;
-        WE <= '0';
-        -- 'Show' R(1)
-        RB <= X"1";
-        OP <= "01";
-        wait for 4 ns;
-
-        -- R(1) = R(1) + R(15)
-        RA <= X"1";
-        RB <= X"F";
+        RB <= X"0";
+        COM1 <= '0';
         OP <= "00";
-        RW <= X"1";
-        WE <= '1';
-        -- Wait till value is written
-        wait for 6 ns;
-        WE <= '0';
-        -- 'Show' R(1)
-        RB <= X"1";
-        OP <= "01";
-        wait for 4 ns;
+        COM2 <= '0';
 
-        -- R(2) = R(1) + R(15)
-        RA <= X"1";
-        RB <= X"F";
+        wait for 1 ns;
+        -- Check N
+        assert N = '0' report "N is wrong after adding two positive or null registers together" severity error;
+
+        RW <= X"0";
+        WER <= '1';
+        wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
+
+        -- ====
+
+        -- Add a register and an immediate value together
+        RA <= X"F";
+        Imm <= X"05";
+        COM1 <= '1';
         OP <= "00";
+        COM2 <= '0';
+
+        wait for 1 ns;
+        -- Check N
+        assert N = '0' report "N is wrong after adding a positive or null register and an immediate value together" severity error;
+
+        RW <= X"1";
+        WER <= '1';
+        wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
+
+        -- ====
+
+        -- Subtract a register from another register
+        RA <= X"0";
+        RB <= X"1";
+        COM1 <= '0';
+        OP <= "10";
+        COM2 <= '0';
+
+        wait for 1 ns;
+        -- Check N
+        assert N = '1' report "N is wrong after substraction of registers" severity error;
+
         RW <= X"2";
-        WE <= '1';
-        -- Wait till value is written
-        wait for 6 ns;
-        WE <= '0';
-        -- 'Show' R(2)
-        RB <= X"2";
-        OP <= "01";
+        WER <= '1';
         wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
 
-        -- R(3) = R(1) - R(15)
-        RA <= X"1";
-        RB <= X"F";
+        -- ====
+
+        -- Subtract an immediate value from a register
+        RA <= X"F";
+        Imm <= X"08";
+        COM1 <= '1';
         OP <= "10";
+        COM2 <= '0';
+
+        wait for 1 ns;
+        -- Check N
+        assert N = '0' report "N is wrong after subtracting an immediate value from a register" severity error;
+
         RW <= X"3";
-        WE <= '1';
-        -- Wait till value is written
-        wait for 6 ns;
-        WE <= '0';
-        -- 'Show' R(3)
-        RB <= X"3";
-        OP <= "01";
+        WER <= '1';
         wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
 
-        -- R(5) = R(7) - R(15)
-        RA <= X"7";
-        RB <= X"F";
-        OP <= "10";
-        RW <= X"5";
-        WE <= '1';
-        -- Wait till value is written
-        wait for 6 ns;
-        WE <= '0';
-        -- 'Show' R(5)
-        RB <= X"5";
-        OP <= "01";
+        -- ====
+
+        -- Copy the value of a register into another register
+        RA <= X"2";
+        OP <= "11";
+        COM2 <= '0';
+
+        wait for 1 ns;
+        -- Check N
+        assert N = '1' report "N is wrong after moving a register value" severity error;
+
+        RW <= X"4";
+        WER <= '1';
         wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
+
+        -- ====
+
+        -- Write a register into data memory
+        RB <= X"4";
+        RA <= X"A";
+        OP <= "11";
+
+        wait for 1 ns;
+        -- Check N
+        assert N = '0' report "N is wrong after moving a register value into data memory" severity error;
+
+        WED <= '1';
+        wait for 4 ns;
+        WED <= '0';
+        wait for 1 ns;
+
+        -- ====
+
+        -- Copy a memory word into a register
+        RA <= X"A";
+        OP <= "11";
+        COM2 <= '1';
+
+        wait for 1 ns;
+
+        RW <= X"5";
+        WER <= '1';
+        wait for 4 ns;
+        WER <= '0';
+        wait for 1 ns;
+
     end process;
 
 end architecture;
