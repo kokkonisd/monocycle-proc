@@ -1,6 +1,6 @@
 # Monocycle MIPS Processor
 
-This is based on a university project of the EISE specialty at Polytech Sorbonne (2019). The goal is to build a processor in VHDL capable of executing a subset of the MIPS instruction set. I tried to re-implement it using only [ghdl](http://ghdl.free.fr/) and [gtkwave](http://gtkwave.sourceforge.net/) for testing (and possibly expand it into a multicycle processor). It also serves as a basic demonstration of how to integrate ghdl & gtkwave into a smooth VHDL workflow without using any other IDEs or simulators; I'm programming this processor using only a text editor and a terminal.
+This is based on a university project of the EISE specialty at Polytech Sorbonne (2018-2019). The goal is to build a processor in VHDL capable of executing a subset of the MIPS instruction set. I tried to re-implement it using only [ghdl](http://ghdl.free.fr/) and [gtkwave](http://gtkwave.sourceforge.net/) for testing (and possibly expand it into a multicycle processor). It also serves as a basic demonstration of how to integrate ghdl & gtkwave into a smooth VHDL workflow without using any other IDEs or simulators; I'm programming this processor using only a text editor and a terminal.
 
 ---
 
