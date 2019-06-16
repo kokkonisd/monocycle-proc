@@ -65,7 +65,7 @@ begin
         RB <= X"C";
         -- Wait till values are stabilized
         wait for 1 ns;
-        -- Check that we read 0 on both registers
+        -- Check that we read 0xA on both registers
         assert A = X"0000000A" report "A is wrong during second read" severity error;
         assert B = X"0000000A" report "B is wrong during second read" severity error;
     end process;

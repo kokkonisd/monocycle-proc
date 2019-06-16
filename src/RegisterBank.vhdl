@@ -43,10 +43,11 @@ architecture default of RegisterBank is
 
     begin
         for i in 14 downto 0 loop
-            result(i) := (others=>'0');
+            result(i) := (others => '0');
         end loop;
 
-        -- Put the value 48 (0x30) in the last register, will come handy for testing later
+        -- Put the value 48 (0x30) in the last register,
+        -- will come in handy for testing later
         result(15) := X"00000030";
 
         return result;
@@ -57,14 +58,18 @@ architecture default of RegisterBank is
 
 begin
 
-    write : process (CLK)
+    write : process (CLK, RST)
     begin
         -- Asynchronous reset
         if RST = '1' then
             bank <= init_bank;
         -- If CLK is on rising edge & WE = 1 write bus W onto register @RW
         elsif rising_edge(CLK) and WE = '1' then
-            bank(to_integer(unsigned(RW))) <= W;
+            -- If RW is undefined, data is not written
+            if RW /= ("UUUU") and RW /= ("XXXX") and RW /= ("ZZZZ")
+                              and RW /= ("WWWW") and RW /= ("----") then
+                bank(to_integer(unsigned(RW))) <= W;
+            end if;
         end if;
     end process;
 
