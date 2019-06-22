@@ -45,10 +45,10 @@ begin
         elsif rising_edge(CLK) then
             -- If nPCsel = 0, just increment PC
             if nPCsel = '0' then
-                PC <= PC + 1;
+                PC <= std_logic_vector(unsigned(PC) + 1);
             -- If nPCsel = 1, increment PC and add offset
             else
-                PC <= PC + 1 + ExtendedOffset;
+                PC <= std_logic_vector(unsigned(PC) + 1 + unsigned(ExtendedOffset));
             end if;
         end if;
     end process;

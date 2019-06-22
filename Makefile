@@ -7,6 +7,7 @@ SOURCES = $(patsubst src/%.vhdl, %, $(wildcard src/*.vhdl)) $(patsubst %.vhd, %,
 all: $(SOURCES)
 
 ProcessingUnit: RegisterBank SignExtension MUX ALU DataMemory
+IMU: SignExtension InstructionMemory
 
 %: src/%.vhdl tb/%_tb.vhdl
 	@echo ""

@@ -1,10 +1,10 @@
-Library ieee;
+library ieee;
 use ieee.std_logic_1164.all;
-
+use ieee.numeric_std.all;
 
 -- Instruction memory test bench for the InstructionMemory IP
 --
--- This test bench aims to test the reading and writing
+-- This test bench aims to test the reading
 -- capabilities of the InstructionMemory IP
 --
 -- Written by D. Kokkonis (@kokkonisd)
@@ -42,35 +42,35 @@ begin
         wait for 4 ns;
         assert Instruction = X"E3A01020" report "Instruction memory is wrong @0x0" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E3A02000" report "Instruction memory is wrong @0x1" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E6110000" report "Instruction memory is wrong @0x2" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E0822000" report "Instruction memory is wrong @0x3" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E2811001" report "Instruction memory is wrong @0x4" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E351002A" report "Instruction memory is wrong @0x5" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"BAFFFFFB" report "Instruction memory is wrong @0x6" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"E6012000" report "Instruction memory is wrong @0x7" severity error;
 
-        PC <= PC + 1;
+        PC <= std_logic_vector(unsigned(PC) + 1);
         wait for 4 ns;
         assert Instruction = X"EAFFFFF7" report "Instruction memory is wrong @0x8" severity error;
 
