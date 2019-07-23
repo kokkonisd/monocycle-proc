@@ -15,27 +15,27 @@ end entity;
 
 architecture default of SignExtension_tb is
     signal N : integer := 16;
-    signal E : std_logic_vector (N - 1 downto 0);
-    signal S : std_logic_vector (31 downto 0);
+    signal A : std_logic_vector (N - 1 downto 0);
+    signal Y : std_logic_vector (31 downto 0);
 
 begin
 
     -- Test with 32-bit input/output
-    T0 : entity work.SignExtension(default) generic map (N) port map (E, S);
+    T0 : entity work.SignExtension(default) generic map (N) port map (A, Y);
 
     test : process
     begin
-        -- Set E to 12
-        E <= X"000C";
+        -- Set A to 12
+        A <= X"000C";
         wait for 1 ns;
         -- Check output
-        assert S = X"0000000C" report "S is wrong for positive input" severity error;
+        assert Y = X"0000000C" report "Y is wrong for positive input" severity error;
 
-        -- Set E to -12
-        E <= X"FFF4";
+        -- Set A to -12
+        A <= X"FFF4";
         wait for 1 ns;
         -- Check output
-        assert S = X"FFFFFFF4" report "S is wrong for negative input" severity error;
+        assert Y = X"FFFFFFF4" report "Y is wrong for negative input" severity error;
     end process;
 
 end architecture;
