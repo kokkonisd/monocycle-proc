@@ -41,6 +41,7 @@ Table of contents
 - [ALU](#alu)
 - [Register bank](#register-bank)
 - [MUX 2v1](#mux-2v1)
+- [Sign extension](#sign-extension)
 
 
 ### ALU
@@ -78,7 +79,7 @@ The `RST` is asynchronous.
 
 This is a simple 2v1 multiplexer.
 
-![MUX 2v1](arch_diagrams/MUX2v1.png)
+![MUX 2v1](arch_diagrams/MUX-2v1.png)
 
 Here are the outputs based on `COM`'s value:
 
@@ -86,3 +87,12 @@ Here are the outputs based on `COM`'s value:
 | :--: | :-: |
 | 0    | A   |
 | 1    | B   |
+
+
+### Sign extension
+
+This is a simple one input, one output block that converts an N-bit input into a 32-bit output, while keeping the same sign (+/-).
+
+![Sign extension](arch_diagrams/SignExtension.png)
+
+Of course, here `N <= 32`.
