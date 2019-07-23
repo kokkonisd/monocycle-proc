@@ -42,6 +42,7 @@ Table of contents
 - [Register bank](#register-bank)
 - [MUX 2v1](#mux-2v1)
 - [Sign extension](#sign-extension)
+- [Data memory](#data-memory)
 
 
 ### ALU
@@ -96,3 +97,16 @@ This is a simple one input, one output block that converts an N-bit input into a
 ![Sign extension](arch_diagrams/SignExtension.png)
 
 Of course, here `N <= 32`.
+
+
+### Data memory
+
+This is a data memory containing a storage space of 64 32-bit words. Its architecture is not that different from that of the [register bank](#register-bank):
+
+![Data memory](arch_diagrams/DataMemory.png)
+
+#### Read
+The read operation is asynchronous; `DataOut` contains the value of the word at address `Addr`, or the word at address `0` if `Addr` is undefined.
+
+#### Write
+The write operation is synchronous, and is performed on the clock's rising edge. On rising edge, if `WE = 1` and `Addr` is defined, then the 32-bit word in `DataIn` is stored at address `Addr` in the memory.
