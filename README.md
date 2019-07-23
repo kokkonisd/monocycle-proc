@@ -39,10 +39,10 @@ $ brew install gtkwave
 Table of contents
 
 - [ALU](#alu)
+- [Register bank](#register-bank)
 
 
 ### ALU
-
 
 The ALU (Arithmetic and Logic Unit) takes care of performing basic mathematical operations:
 
@@ -56,3 +56,18 @@ Based on the value of `OP`, the operations it performs have as follows:
 | 01  | B     |
 | 10  | A - B |
 | 11  | A     |
+
+
+### Register bank
+
+The register bank contains the CPU's 16 32-bit registers.
+
+![Register bank](arch_diagrams/RegisterBank.png)
+
+#### Read
+The read operations are asynchronous; outputs `A` and `B` contain the values found at the addresses `RA` and `RB` respectively. When `RA` and/or `RB` are undefined, `A` and/or `B` output the value of the register at address `0`.
+
+#### Write
+The write operations are synchronous, and are performed on the clock's rising edge. On rising edge, if `WE = 1` and `RW` is not undefined, the value of the `W` bus is written onto the register at address `RW`.
+
+The `RST` is asynchronous.
