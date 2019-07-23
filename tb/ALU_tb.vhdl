@@ -15,12 +15,12 @@ end entity;
 
 architecture default of ALU_tb is
     signal OP : std_logic_vector (1 downto 0);
-    signal A, B, S : std_logic_vector (31 downto 0);
+    signal A, B, O : std_logic_vector (31 downto 0);
     signal N : std_logic;
 
 begin
 
-    T0 : entity work.ALU(default) port map (OP, A, B , S, N);
+    T0 : entity work.ALU(default) port map (OP, A, B , O, N);
 
     test : process
     begin
@@ -36,8 +36,8 @@ begin
         -- Check A and B values
         assert A = X"00000005" report "A is wrong during ADD (OP = 00)" severity error;
         assert B = X"00000007" report "B is wrong during ADD (OP = 00)" severity error;
-        -- Check S value (should be 5 + 7 = 12)
-        assert S = X"0000000C" report "S is wrong during ADD (OP = 00)" severity error;
+        -- Check O value (should be 5 + 7 = 12)
+        assert O = X"0000000C" report "O is wrong during ADD (OP = 00)" severity error;
         -- Check N flag (should be 0 because S is not negative)
         assert N = '0' report "N is wrong during ADD (OP = 00)" severity error;
 
@@ -49,8 +49,8 @@ begin
         -- Check A and B values
         assert A = X"00000005" report "A is wrong during PASS B (OP = 01)" severity error;
         assert B = X"00000007" report "B is wrong during PASS B (OP = 01)" severity error;
-        -- Check S value (should be B = 7)
-        assert S = X"00000007" report "S is wrong during PASS B (OP = 01)" severity error;
+        -- Check O value (should be B = 7)
+        assert O = X"00000007" report "O is wrong during PASS B (OP = 01)" severity error;
         -- Check N flag (should be 0 because S is not negative)
         assert N = '0' report "N is wrong during PASS B (OP = 01)" severity error;
 
@@ -62,8 +62,8 @@ begin
         -- Check A and B values
         assert A = X"00000005" report "A is wrong during SUB (OP = 10)" severity error;
         assert B = X"00000007" report "B is wrong during SUB (OP = 10)" severity error;
-        -- Check S value (should be 5 - 7 = -2)
-        assert S = X"FFFFFFFE" report "S is wrong during SUB (OP = 10)" severity error;
+        -- Check O value (should be 5 - 7 = -2)
+        assert O = X"FFFFFFFE" report "O is wrong during SUB (OP = 10)" severity error;
         -- Check N flag (should be 1 because S is negative)
         assert N = '1' report "N is wrong during SUB (OP = 10)" severity error;
 
@@ -75,8 +75,8 @@ begin
         -- Check A and B values
         assert A = X"00000005" report "A is wrong during PASS A (OP = 11)" severity error;
         assert B = X"00000007" report "B is wrong during PASS A (OP = 11)" severity error;
-        -- Check S value (should be A = 5)
-        assert S = X"00000005" report "S is wrong during PASS A (OP = 11)" severity error;
+        -- Check O value (should be A = 5)
+        assert O = X"00000005" report "O is wrong during PASS A (OP = 11)" severity error;
         -- Check N flag (should be 0 because S is not negative)
         assert N = '0' report "N is wrong during PASS A (OP = 11)" severity error;
     end process;

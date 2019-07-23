@@ -40,6 +40,7 @@ Table of contents
 
 - [ALU](#alu)
 - [Register bank](#register-bank)
+- [MUX 2v1](#mux-2v1)
 
 
 ### ALU
@@ -71,3 +72,17 @@ The read operations are asynchronous; outputs `A` and `B` contain the values fou
 The write operations are synchronous, and are performed on the clock's rising edge. On rising edge, if `WE = 1` and `RW` is not undefined, the value of the `W` bus is written onto the register at address `RW`.
 
 The `RST` is asynchronous.
+
+
+### MUX 2v1
+
+This is a simple 2v1 multiplexer.
+
+![MUX 2v1](arch_diagrams/MUX2v1.png)
+
+Here are the outputs based on `COM`'s value:
+
+| COM  | Y   |
+| :--: | :-: |
+| 0    | A   |
+| 1    | B   |

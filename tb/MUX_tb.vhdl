@@ -17,12 +17,12 @@ architecture default of MUX_tb is
     signal N : integer := 32;
     signal A, B : std_logic_vector (N - 1 downto 0);
     signal COM : std_logic;
-    signal S : std_logic_vector (N - 1 downto 0);
+    signal Y : std_logic_vector (N - 1 downto 0);
 
 begin
 
     -- Test with 32-bit input/output
-    T0 : entity work.MUX(default) generic map (N) port map (A, B, COM, S);
+    T0 : entity work.MUX(default) generic map (N) port map (A, B, COM, Y);
 
     test : process
     begin
@@ -30,14 +30,14 @@ begin
         A <= X"FFFFFFFE";
         B <= X"0000000C";
 
-        -- Check that S is A when COM is 0
+        -- Check that Y is A when COM is 0
         COM <= '0';
         wait for 1 ns;
-        assert S = A report "S is wrong when COM is 0" severity error;
+        assert Y = A report "Y is wrong when COM is 0" severity error;
 
-        -- Check that S is B when COM is 1
+        -- Check that Y is B when COM is 1
         COM <= '1';
         wait for 1 ns;
-        assert S = B report "S is wrong when COM is 1" severity error;
+        assert Y = B report "Y is wrong when COM is 1" severity error;
     end process;
 end architecture;

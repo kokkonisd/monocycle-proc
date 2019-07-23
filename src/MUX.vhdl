@@ -23,7 +23,7 @@ entity MUX is
     port (
         A, B : in std_logic_vector (N - 1 downto 0);
         COM : in std_logic;
-        S : out std_logic_vector (N - 1 downto 0)
+        Y : out std_logic_vector (N - 1 downto 0)
     );
 end entity;
 
@@ -31,6 +31,6 @@ end entity;
 architecture default of MUX is
 begin
 
-    S <= A when (COM = '0') else B;
+    Y <= A when (COM = '0') else B;
 
 end architecture;
