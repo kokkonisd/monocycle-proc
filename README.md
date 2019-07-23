@@ -36,4 +36,23 @@ $ brew install gtkwave
 
 ## Processor architecture
 
-Coming soon!
+Table of contents
+
+- [ALU](#alu)
+
+
+### ALU
+
+
+The ALU (Arithmetic and Logic Unit) takes care of performing basic mathematical operations:
+
+![ALU](arch_diagrams/ALU.png)
+
+Based on the value of `OP`, the operations it performs have as follows:
+
+| OP  | O     |
+| :-: | :---: |
+| 00  | A + B |
+| 01  | B     |
+| 10  | A - B |
+| 11  | A     |

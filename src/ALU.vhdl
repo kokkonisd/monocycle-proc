@@ -23,7 +23,7 @@ entity ALU is
     port (
         OP : in std_logic_vector (1 downto 0);
         A, B : in std_logic_vector (31 downto 0);
-        S : out std_logic_vector (31 downto 0);
+        O : out std_logic_vector (31 downto 0);
         N : out std_logic
     );
 end entity;
@@ -56,6 +56,6 @@ begin
     -- The 31th byte of the output indicates wether it is negative or not
     N <= Y(31);
     -- S takes the value of the intermediate signal Y
-    S <= Y;
+    O <= Y;
 
 end architecture;
