@@ -2,3 +2,4 @@
 *.cf
 simu/*.vcd
 *_tb
+arch_diagrams/*.drawio

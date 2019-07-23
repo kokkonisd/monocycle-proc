@@ -36,6 +36,8 @@ $ brew install gtkwave
 
 ## Processor architecture
 
+_[The architecture is incomplete. I'm still writing the docs and coding the IPs.]_
+
 Table of contents
 
 - [ALU](#alu)
