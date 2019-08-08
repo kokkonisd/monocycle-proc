@@ -174,5 +174,52 @@ the result in the data memory
 #### Detailed connections
 
 ##### Register bank
-The `A` output of the register bank is directly connected to the `A` input
+The `A` output of the register bank is connected to the `A` input
 of the ALU.
+
+The `B` output of the register bank is connected to the `A` input of the first
+MUX, and also to the `DataIn` input of the data memory.
+
+The `W` bus is connected to the output of the second MUX.
+
+The inputs `CLK`, `RST`, `WE`, `RW`, `RA` and `RB` are not connected and are thus considered
+inputs to the PU entity.
+
+##### Sign extension
+The input of the sign extension is an 8-bit immediate input. It is converted
+to a 32-bit vector in the output, while keeping the same sign; it is then
+connected to the `B` input of the first MUX.
+
+##### First MUX
+The `A` input of the first MUX is connected to the `B` output of the register
+bank. The `B` input is connected to the output of the sign extension entity.
+
+The `Y` output is connected to the `B` input of the ALU. The `COM` input is not
+connected and is thus considered an input to the PU entity.
+
+##### ALU
+The `A` input of the ALU is connected to the `A` output of the register bank.
+The `B` input is connected to the `Y` output of the first MUX.
+
+The `O` output is connected to the `A` input of the second MUX; its 6 least
+significant bits are connected to the `Addr` input of the data memory.
+
+The `OP` input and `N` output are not connected and are thus considered
+inputs/outputs to the PU entity.
+
+##### Data memory
+The `DataIn` input is connected to the `B` output of the register bank. The
+`DataOut` output is connected to the `B` input of the second MUX. The `Addr`
+input is connected to the 6 least significant bits of the `O` output
+of the ALU.
+
+The inputs `CLK`, `RST` and `WE` are not connected and are thus considered
+inputs to the PU entity.
+
+##### Second MUX
+The `A` input is connected to the `O` output of the ALU. The `B` input is
+connected to the `DataOut` output of the data memory. The `Y` output is
+connected to the `W` input of the register bank.
+
+The `COM` input is not connected and is thus considered an input to the PU
+entity.
