@@ -51,7 +51,7 @@ Table of contents
 
 The ALU (Arithmetic and Logic Unit) takes care of performing basic mathematical operations:
 
-![ALU](arch_diagrams/ALU.png)
+![ALU](arch_diagrams/ALU.svg)
 
 Based on the value of `OP`, the operations it performs have as follows:
 
@@ -67,7 +67,7 @@ Based on the value of `OP`, the operations it performs have as follows:
 
 The register bank contains the CPU's 16 32-bit registers.
 
-![Register bank](arch_diagrams/RegisterBank.png)
+![Register bank](arch_diagrams/RegisterBank.svg)
 
 #### Read
 The read operations are asynchronous; outputs `A` and `B` contain the values found at the addresses `RA` and `RB` respectively. When `RA` and/or `RB` are undefined, `A` and/or `B` output the value of the register at address `0`.
@@ -80,9 +80,9 @@ The `RST` is asynchronous.
 
 ### MUX 2v1
 
-This is a simple 2v1 multiplexer.
+This is a simple 2v1 multiplexer with variable input/output length (its maximum length is 32 bits).
 
-![MUX 2v1](arch_diagrams/MUX-2v1.png)
+![MUX 2v1](arch_diagrams/MUX-2v1.svg)
 
 Here are the outputs based on `COM`'s value:
 
@@ -96,7 +96,7 @@ Here are the outputs based on `COM`'s value:
 
 This is a simple one input, one output block that converts an N-bit input into a 32-bit output, while keeping the same sign (+/-).
 
-![Sign extension](arch_diagrams/SignExtension.png)
+![Sign extension](arch_diagrams/SignExtension.svg)
 
 Of course, here `N <= 32`.
 
@@ -105,7 +105,7 @@ Of course, here `N <= 32`.
 
 This is a data memory containing a storage space of 64 32-bit words. Its architecture is not that different from that of the [register bank](#register-bank):
 
-![Data memory](arch_diagrams/DataMemory.png)
+![Data memory](arch_diagrams/DataMemory.svg)
 
 #### Read
 The read operation is asynchronous; `DataOut` contains the value of the word at address `Addr`, or the word at address `0` if `Addr` is undefined.

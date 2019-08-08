@@ -1,0 +1,16 @@
+<svg version='1.1' baseProfile='full' width='2879.60' height='220.00' xmlns='http://www.w3.org/2000/svg'>
+<rect width='1639.20' height='210.00' x='857.20' y='5.00' fill='none' stroke='black' stroke-width='10' />
+<text text-anchor='middle' x='1671.80' y='190.00' font-size='60' fill='black' font-family='Courier'>SignExtension</text>
+<text text-anchor='begin' x='918.20' y='66.00' font-size='56' fill='black' font-family='Courier'>N : integer range 0 to 32</text>
+<line x1='852.20' y1='82.50' x2='2491.40' y2='82.50' stroke='black' stroke-width='3' fill='transparent' />
+<line x1='123.20' y1='110.00' x2='822.20' y2='110.00' stroke='black' stroke-width='5' fill='transparent'/>
+<path d='M819.20 110.00 L807.20 95.00 L852.20 110.00 L807.20 125.00 Z'/>
+<line x1='477.70' y1='120.00' x2='497.70' y2='100.00' stroke='black' stroke-width='3' fill='transparent' />
+<text text-anchor='end' x='92.40' y='124.00' font-size='56' fill='black' font-family='Courier'>A</text>
+<text text-anchor='middle' x='487.70' y='95.00' font-size='38' fill='black' font-family='Courier'>(N - 1 downto 0)</text>
+<line x1='2491.40' y1='110.00' x2='2706.40' y2='110.00' stroke='black' stroke-width='5' fill='transparent'/>
+<path d='M2703.40 110.00 L2691.40 95.00 L2736.40 110.00 L2691.40 125.00 Z'/>
+<line x1='2603.90' y1='120.00' x2='2623.90' y2='100.00' stroke='black' stroke-width='3' fill='transparent' />
+<text text-anchor='begin' x='2767.20' y='124.00' font-size='56' fill='black' font-family='Courier'>Y</text>
+<text text-anchor='middle' x='2613.90' y='95.00' font-size='38' fill='black' font-family='Courier'>32</text>
+</svg>
