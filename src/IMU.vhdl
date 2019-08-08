@@ -34,7 +34,8 @@ architecture default of IMU is
 begin
 
     -- Extend 24-bit offset to 32-bit
-    Ext : entity work.SignExtension(default) generic map (OffsetSize) port map (Offset, ExtendedOffset);
+    Ext : entity work.SignExtension(default)
+         generic map (OffsetSize) port map (Offset, ExtendedOffset);
 
     cycle : process (CLK, RST)
     begin
@@ -48,12 +49,15 @@ begin
                 PC <= std_logic_vector(unsigned(PC) + 1);
             -- If nPCsel = 1, increment PC and add offset
             else
-                PC <= std_logic_vector(unsigned(PC) + 1 + unsigned(ExtendedOffset));
+                PC <= std_logic_vector(
+                        unsigned(PC) + 1 + unsigned(ExtendedOffset)
+                      );
             end if;
         end if;
     end process;
 
     -- Branch PC into the instruction memory and fetch the instruction
-    Mem : entity work.InstructionMemory(default) port map (CLK, RST, PC, Instruction);
+    Mem : entity work.InstructionMemory(default)
+          port map (CLK, RST, PC, Instruction);
 
 end architecture;

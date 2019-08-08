@@ -22,7 +22,8 @@ architecture default of DataMemory_tb is
 
 begin
 
-    T0 : entity work.DataMemory(default) port map (CLK, RST, DataIn, Addr, WE, DataOut);
+    T0 : entity work.DataMemory(default)
+         port map (CLK, RST, DataIn, Addr, WE, DataOut);
 
     clk_gen : process
     begin
@@ -45,7 +46,9 @@ begin
         -- Wait till values are stabilized
         wait for 5 ns;
         -- Check that we read 0 on memory address @Addr = 0
-        assert DataOut = X"00000000" report "DataOut is wrong during first read" severity error;
+        assert DataOut = X"00000000" report "DataOut is wrong during first" &
+                                            "read"
+                                     severity error;
 
         -- Write into memory address @Addr = 12
         DataIn <= X"0000000A";
@@ -60,7 +63,9 @@ begin
         -- Wait till values are stabilized
         wait for 5 ns;
         -- Check that we read 0xA on memory address @Addr = 12
-        assert DataOut = X"0000000A" report "DataOut is wrong during second read" severity error;
+        assert DataOut = X"0000000A" report "DataOut is wrong during second" &
+                                            "read"
+                                     severity error;
 
         wait for 5 ns;
     end process;

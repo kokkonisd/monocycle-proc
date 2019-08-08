@@ -12,13 +12,14 @@ use ieee.numeric_std.all;
 -- RA, RB and RW are 3-bit data buses that hold the addresses of A and B
 -- and the address on which the data should be written, respectively
 -- WE is a write-enable input
--- A and B are 32-bit data buses that output the content of the registers @RA & @RB
+-- A and B are 32-bit data buses that output the content of the registers @RA &
+-- @RB
 --
 -- It performs 2 types of operations:
--- 1. Reading of registers (combinatorial): outputs A and B are set to the values
--- found at the addresses @RA and @RB
--- 2. Writing to registers (synchronous, on rising edge): If WE = 1, then the value
--- of the W bus is written into the register at the address @RW
+-- 1. Reading of registers (combinatorial): outputs A and B are set to the
+-- values found at the addresses @RA and @RB
+-- 2. Writing to registers (synchronous, on rising edge): If WE = 1, then the
+-- value of the W bus is written into the register at the address @RW
 --
 -- Written by D. Kokkonis (@kokkonisd)
 
@@ -35,7 +36,8 @@ end entity;
 
 architecture default of RegisterBank is
     -- Declaration of type register_array (array of 16 32-bit vectors)
-    type register_array is array (15 downto 0) of std_logic_vector (31 downto 0);
+    type register_array is array (15 downto 0)
+                        of std_logic_vector (31 downto 0);
 
     -- Initialization function of register bank
     function init_bank return register_array is

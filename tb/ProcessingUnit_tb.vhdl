@@ -21,7 +21,8 @@ architecture default of ProcessingUnit_tb is
 
 begin
 
-    T0 : entity work.ProcessingUnit(default) port map (CLK, RST, COM1, COM2, WER, WED, OP, RW, RA, RB, Imm, N);
+    T0 : entity work.ProcessingUnit(default)
+         port map (CLK, RST, COM1, COM2, WER, WED, OP, RW, RA, RB, Imm, N);
 
     clk_gen : process
     begin
@@ -50,7 +51,9 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '0' report "N is wrong after adding two positive or null registers together" severity error;
+        assert N = '0' report "N is wrong after adding two positive or null" &
+                              "registers together"
+                       severity error;
 
         RW <= X"0";
         WER <= '1';
@@ -69,7 +72,9 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '0' report "N is wrong after adding a positive or null register and an immediate value together" severity error;
+        assert N = '0' report "N is wrong after adding a positive or null" &
+                              "register and an immediate value together"
+                       severity error;
 
         RW <= X"1";
         WER <= '1';
@@ -88,7 +93,8 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '1' report "N is wrong after substraction of registers" severity error;
+        assert N = '1' report "N is wrong after substraction of registers"
+                       severity error;
 
         RW <= X"2";
         WER <= '1';
@@ -107,7 +113,9 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '0' report "N is wrong after subtracting an immediate value from a register" severity error;
+        assert N = '0' report "N is wrong after subtracting an immediate" &
+                              "value from a register"
+                       severity error;
 
         RW <= X"3";
         WER <= '1';
@@ -124,7 +132,8 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '1' report "N is wrong after moving a register value" severity error;
+        assert N = '1' report "N is wrong after moving a register value"
+                       severity error;
 
         RW <= X"4";
         WER <= '1';
@@ -141,7 +150,9 @@ begin
 
         wait for 1 ns;
         -- Check N
-        assert N = '0' report "N is wrong after moving a register value into data memory" severity error;
+        assert N = '0' report "N is wrong after moving a register value into" &
+                              "data memory"
+                       severity error;
 
         WED <= '1';
         wait for 4 ns;

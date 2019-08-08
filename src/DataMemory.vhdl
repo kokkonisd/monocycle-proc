@@ -8,7 +8,8 @@ use ieee.numeric_std.all;
 -- This unit has 4 inputs and 1 output:
 -- CLK is the clock line
 -- RST is the reset line
--- DataIn is a 32-bit data bus that holds the data to write into register memory
+-- DataIn is a 32-bit data bus that holds the data to write into register
+-- memory
 -- Addr is a 6-bit data bus that holds the address on which the data should be
 -- read or written
 -- WE is a write-enable input
@@ -61,7 +62,8 @@ begin
         elsif rising_edge(CLK) and WE = '1' then
             -- If Addr is undefined, data is not written
             if Addr /= ("UUUUUU") and Addr /= ("XXXXXX") and Addr /= ("ZZZZZZ")
-                                  and Addr /= ("WWWWWW") and Addr /= ("------") then
+                                  and Addr /= ("WWWWWW") and Addr /= ("------")
+                                  then
                 memory(to_integer(unsigned(Addr))) <= DataIn;
             end if;
         end if;

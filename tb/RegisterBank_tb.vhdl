@@ -22,7 +22,8 @@ architecture default of RegisterBank_tb is
 
 begin
 
-    T0 : entity work.RegisterBank(default) port map (CLK, RST, W, RA, RB, RW, WE, A, B);
+    T0 : entity work.RegisterBank(default)
+         port map (CLK, RST, W, RA, RB, RW, WE, A, B);
 
     clk_gen : process
     begin
@@ -46,8 +47,10 @@ begin
         -- Wait till values are stabilized
         wait for 1 ns;
         -- Check that we read 0 on both registers
-        assert A = X"00000000" report "A is wrong during first read" severity error;
-        assert B = X"00000000" report "B is wrong during first read" severity error;
+        assert A = X"00000000" report "A is wrong during first read"
+                               severity error;
+        assert B = X"00000000" report "B is wrong during first read"
+                               severity error;
 
         -- Write into registers @RW = 0 & @RW = 12
         W <= X"0000000A";
@@ -66,8 +69,10 @@ begin
         -- Wait till values are stabilized
         wait for 1 ns;
         -- Check that we read 0xA on both registers
-        assert A = X"0000000A" report "A is wrong during second read" severity error;
-        assert B = X"0000000A" report "B is wrong during second read" severity error;
+        assert A = X"0000000A" report "A is wrong during second read"
+                               severity error;
+        assert B = X"0000000A" report "B is wrong during second read"
+                               severity error;
     end process;
 
 end architecture;

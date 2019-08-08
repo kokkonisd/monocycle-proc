@@ -29,13 +29,15 @@ begin
         A <= X"000C";
         wait for 1 ns;
         -- Check output
-        assert Y = X"0000000C" report "Y is wrong for positive input" severity error;
+        assert Y = X"0000000C" report "Y is wrong for positive input"
+                               severity error;
 
         -- Set A to -12
         A <= X"FFF4";
         wait for 1 ns;
         -- Check output
-        assert Y = X"FFFFFFF4" report "Y is wrong for negative input" severity error;
+        assert Y = X"FFFFFFF4" report "Y is wrong for negative input"
+                               severity error;
     end process;
 
 end architecture;

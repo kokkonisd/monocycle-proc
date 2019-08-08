@@ -20,7 +20,8 @@ architecture default of IMU_tb is
 
 begin
 
-    T0 : entity work.IMU(default) port map (CLK, RST, nPCsel, Offset, Instruction);
+    T0 : entity work.IMU(default)
+         port map (CLK, RST, nPCsel, Offset, Instruction);
 
     clk_gen : process
     begin
