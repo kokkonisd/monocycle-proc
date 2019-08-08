@@ -2,4 +2,5 @@
 *.cf
 simu/*.vcd
 *_tb
-arch_diagrams/*.drawio
+arch_diagrams/*
+!arch_diagrams/*.svg

@@ -45,6 +45,7 @@ Table of contents
 - [MUX 2v1](#mux-2v1)
 - [Sign extension](#sign-extension)
 - [Data memory](#data-memory)
+- [Procesing Unit](#processing-unit)
 
 
 ### ALU
@@ -112,3 +113,23 @@ The read operation is asynchronous; `DataOut` contains the value of the word at 
 
 #### Write
 The write operation is synchronous, and is performed on the clock's rising edge. On rising edge, if `WE = 1` and `Addr` is defined, then the 32-bit word in `DataIn` is stored at address `Addr` in the memory.
+
+
+### Processing Unit
+
+This is the assembled Processing Unit. It contains an [ALU](#alu), a [register bank](#register-bank), two [MUXes](#mux-2v1), a [sign extension entity](#sign-extension) and a [data memory](#data-memory).
+
+![Processing Unit](arch_diagrams/ProcessingUnit.svg)
+
+This unit allows us to perform all the basic operations, given a data memory.
+
+#### Operations
+
+This unit can perform the following operations:
+
+1. Move values from the data memory into registers
+2. Move values from registers into the data memory
+3. Add/subtract with registers and store the result in another register
+4. Add/subtract with registers and store the result in the data memory
+5. Add/subtract with a register and an immediate value (8 bits) and store the result in another register
+6. Add/subtract with a register and an immediate value (8 bits) and store the result in the data memory
