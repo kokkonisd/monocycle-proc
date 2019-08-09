@@ -1,0 +1,20 @@
+<svg version='1.1' baseProfile='full' width='2364.00' height='304.00' xmlns='http://www.w3.org/2000/svg'>
+<rect width='1238.00' height='294.00' x='434.80' y='5.00' fill='none' stroke='black' stroke-width='10' />
+<text text-anchor='middle' x='1048.80' y='274.00' font-size='60' fill='black' font-family='Courier'>InstructionMemory</text>
+<path d='M434.80 245.00 L483.80 269.50 L434.80 294.00 Z' stroke='black' stroke-width='3' fill='transparent'/>
+<line x1='184.80' y1='54.00' x2='399.80' y2='54.00' stroke='black' stroke-width='5' fill='transparent'/>
+<path d='M396.80 54.00 L384.80 39.00 L429.80 54.00 L384.80 69.00 Z'/>
+<line x1='297.30' y1='64.00' x2='317.30' y2='44.00' stroke='black' stroke-width='3' fill='transparent' />
+<text text-anchor='end' x='154.00' y='68.00' font-size='56' fill='black' font-family='Courier'>RST</text>
+<text text-anchor='middle' x='307.30' y='39.00' font-size='38' fill='black' font-family='Courier'>1</text>
+<line x1='184.80' y1='152.00' x2='399.80' y2='152.00' stroke='black' stroke-width='5' fill='transparent'/>
+<path d='M396.80 152.00 L384.80 137.00 L429.80 152.00 L384.80 167.00 Z'/>
+<line x1='297.30' y1='162.00' x2='317.30' y2='142.00' stroke='black' stroke-width='3' fill='transparent' />
+<text text-anchor='end' x='154.00' y='166.00' font-size='56' fill='black' font-family='Courier'>PC</text>
+<text text-anchor='middle' x='307.30' y='137.00' font-size='38' fill='black' font-family='Courier'>32</text>
+<line x1='1667.80' y1='152.00' x2='1882.80' y2='152.00' stroke='black' stroke-width='5' fill='transparent'/>
+<path d='M1879.80 152.00 L1867.80 137.00 L1912.80 152.00 L1867.80 167.00 Z'/>
+<line x1='1780.30' y1='162.00' x2='1800.30' y2='142.00' stroke='black' stroke-width='3' fill='transparent' />
+<text text-anchor='begin' x='1943.60' y='166.00' font-size='56' fill='black' font-family='Courier'>Instruction</text>
+<text text-anchor='middle' x='1790.30' y='137.00' font-size='38' fill='black' font-family='Courier'>32</text>
+</svg>

@@ -65,7 +65,9 @@ Table of contents
 - [MUX 2v1](#mux-2v1)
 - [Sign extension](#sign-extension)
 - [Data memory](#data-memory)
-- [Procesing Unit](#processing-unit)
+- [Processing Unit](#processing-unit)
+- [Instruction memory](#instruction-memory)
+- [IMU](#imu)
 
 
 ### ALU
@@ -153,9 +155,12 @@ This is the assembled Processing Unit. It contains an [ALU](#alu), a
 [register bank](#register-bank), two [MUXes](#mux-2v1), a
 [sign extension entity](#sign-extension) and a [data memory](#data-memory).
 
-![Processing Unit](arch_diagrams/ProcessingUnit.svg)
+![Processing Unit (detailed)](arch_diagrams/ProcessingUnit_detailed.svg)
 
 This unit allows us to perform all the basic operations, given a data memory.
+Here is a top-level diagram of the Processing Unit entity:
+
+![Processing Unit (top-level)](arch_diagrams/ProcessingUnit_toplevel.svg)
 
 #### Operations
 
@@ -182,8 +187,8 @@ MUX, and also to the `DataIn` input of the data memory.
 
 The `W` bus is connected to the output of the second MUX.
 
-The inputs `CLK`, `RST`, `WE`, `RW`, `RA` and `RB` are not connected and are thus considered
-inputs to the PU entity.
+The inputs `CLK`, `RST`, `WE`, `RW`, `RA` and `RB` are not connected and are
+thus considered inputs to the PU entity.
 
 ##### Sign extension
 The input of the sign extension is an 8-bit immediate input. It is converted
@@ -223,3 +228,35 @@ connected to the `W` input of the register bank.
 
 The `COM` input is not connected and is thus considered an input to the PU
 entity.
+
+
+### Instruction memory
+
+The instruction memory is similar to the [data memory](#data-memory):
+
+![Instruction memory](arch_diagrams/InstructionMemory.svg)
+
+It contains a set of MIPS instructions -- which, in this case, is hardcoded
+into the memory -- and, given an address (refered to as `PC` in this case, as
+in _Program Counter_), it outputs the instruction that is found at that
+address.
+
+
+### IMU
+
+The IMU (Instruction Management Unit) handles the processing of the
+instructions.
+
+![IMU](arch_diagrams/IMU.svg)
+
+It contains the [instruction memory](#instruction-memory), the
+`PC` register (that contains the address of the next instruction to be read),
+a [sign extension](#sign-extension) entity that can convert an address offset
+coded on 24 bits to a 32-bit address. Finally, a [MUX](#mux-2v1) determines
+if the instruction is a _normal_ instruction or if it is a _jump_ instruction:
+
+- If `nPCsel = 0`, the instruction is a normal one, so `PC` is simply
+  incremented (`PC = PC + 1`)
+- If `nPCsel = 1`, the instruction is a jump, so `PC` is incremented by 1 and
+  also by the 32-bit address that results from the 24-bit offset
+  (`PC = PC + 1 + SignExtension(Offset)`).
