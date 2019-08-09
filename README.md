@@ -160,7 +160,7 @@ This is the assembled Processing Unit. It contains an [ALU](#alu), a
 This unit allows us to perform all the basic operations, given a data memory.
 Here is a top-level diagram of the Processing Unit entity:
 
-![Processing Unit (top-level)](arch_diagrams/ProcessingUnit_toplevel.svg)
+![Processing Unit (top-level)](arch_diagrams/ProcessingUnit.svg)
 
 #### Operations
 

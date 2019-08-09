@@ -27,7 +27,7 @@ use ieee.numeric_std.all;
 entity ProcessingUnit is
     port (
         CLK, RST, COM1, COM2, WER, WED : in std_logic;
-        OP : std_logic_vector (1 downto 0);
+        OP : in std_logic_vector (1 downto 0);
         RW, RA, RB : in std_logic_vector (3 downto 0);
         Imm : in std_logic_vector (7 downto 0);
         N : out std_logic
