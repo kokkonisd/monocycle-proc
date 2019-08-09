@@ -236,8 +236,8 @@ The instruction memory is similar to the [data memory](#data-memory):
 
 ![Instruction memory](arch_diagrams/InstructionMemory.svg)
 
-It contains a set of MIPS instructions -- which, in this case, is hardcoded
-into the memory -- and, given an address (refered to as `PC` in this case, as
+It contains a set of MIPS instructions &mdash; which, in this case, is hardcoded
+into the memory &mdash; and, given an address (refered to as `PC` in this case, as
 in _Program Counter_), it outputs the instruction that is found at that
 address.
 
