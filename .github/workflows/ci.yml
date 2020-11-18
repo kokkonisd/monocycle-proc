@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install ghdl
+      run: |
+        sudo apt-get install wget
+        wget https://gist.githubusercontent.com/kokkonisd/0e15bca727730501990fd76a1c9af023/raw/0523f0570fd5e11d9604257502b73a3fd3079159/install-ghdl-ubuntu.sh
+        sh ./install-ghdl-ubuntu.sh 
+    - name: Build project & run tests
+      run: DEBUG=0 make

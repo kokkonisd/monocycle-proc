@@ -4,3 +4,5 @@ simu/*.vcd
 *_tb
 arch_diagrams/*
 !arch_diagrams/*.svg
+build/
+
